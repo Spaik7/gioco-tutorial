@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bscuvpbt6plr2"]
+[gd_scene load_steps=15 format=3 uid="uid://bscuvpbt6plr2"]
 
 [ext_resource type="Texture2D" uid="uid://ckjp2w271g7vh" path="res://assets/sprites/world_tileset.png" id="1_c6dvc"]
+[ext_resource type="Script" uid="uid://c0pq2rkw6whsn" path="res://scripts/game_manager.gd" id="1_u1u68"]
 [ext_resource type="PackedScene" uid="uid://dk6lbmadeaj5o" path="res://scenes/gay.tscn" id="2_611at"]
 [ext_resource type="PackedScene" uid="uid://3axsjvori7as" path="res://scenes/Platform.tscn" id="3_k24pf"]
 [ext_resource type="PackedScene" uid="uid://drpx8jn1e2soy" path="res://scenes/Coin.tscn" id="4_611at"]
 [ext_resource type="PackedScene" uid="uid://xyqiaqsma8kr" path="res://scenes/killzone.tscn" id="5_k24pf"]
 [ext_resource type="PackedScene" uid="uid://cfx8cgrvftwqv" path="res://scenes/slime.tscn" id="6_ygjfp"]
+[ext_resource type="FontFile" uid="uid://dgph6jlc1v44g" path="res://assets/fonts/PixelOperator8.ttf" id="7_1wiy7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rnjyy"]
 texture = ExtResource("1_c6dvc")
@@ -216,6 +218,10 @@ _data = {
 [node name="Platform" type="Node2D"]
 position = Vector2(0, 1)
 
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_u1u68")
+
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-1, 0)
 tile_set = SubResource("TileSet_4vge2")
@@ -234,6 +240,22 @@ zoom = Vector2(4, 4)
 limit_bottom = 150
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="ScoreLabel" type="Label" parent="gay/camer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 23.0
+offset_top = -80.0
+offset_right = 143.0
+offset_bottom = -71.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_1wiy7")
+theme_override_font_sizes/font_size = 8
+text = "SCORE: 0"
+horizontal_alignment = 2
+uppercase = true
 
 [node name="Killzone" parent="." instance=ExtResource("5_k24pf")]
 position = Vector2(0, 181)
@@ -265,3 +287,15 @@ autoplay = "move"
 
 [node name="Slime" parent="." instance=ExtResource("6_ygjfp")]
 position = Vector2(-54, -56)
+
+[node name="Labels" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="Labels"]
+offset_left = -131.0
+offset_top = 85.0
+offset_right = -14.0
+offset_bottom = 101.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_1wiy7")
+theme_override_font_sizes/font_size = 8
+text = "AAAAAAAAAAh"
